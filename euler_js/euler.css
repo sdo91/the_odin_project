@@ -1,0 +1,35 @@
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    padding: 0px 45px;
+    margin: 0px;
+}
+
+h1 {
+    text-align: center;
+}
+
+div {
+    border: 1px solid black;
+    margin-top: 20px;
+    padding: 0px 15px;
+    
+    width: 100%;
+    max-width: 800px;
+    
+}
+
+input {
+    width: 100px;
+}
+
+#reset-button {
+    margin: 20px;
+}
+
+
+
