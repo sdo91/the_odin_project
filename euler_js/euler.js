@@ -3,6 +3,15 @@
 
 
 
+
+
+
+
+
+
+
+// PROBLEM 1
+
 // var text1 = document.querySelector('#p1-text')
 var button1 = document.querySelector('#p1-button')
 var answer1 = document.querySelector('#p1-answer')
@@ -52,7 +61,7 @@ function p1(maxVal) {
 
 
 
-
+// PROBLEM 2
 
 
 // var text2 = document.querySelector('#p2-text')
@@ -98,6 +107,15 @@ function p2(maxVal) {
 
 
 
+
+
+
+
+
+
+// PROBLEM 3
+
+
 // var text3 = document.getElementById('p3-text')
 var button3 = document.getElementById('p3-button')
 var answer3 = document.getElementById('p3-answer')
@@ -111,21 +129,35 @@ button3.onclick = function() {
 
 function p3(targetNum) {
     
-    // FIND THE ACTUAL ANSWER
+    var root = Math.sqrt(targetNum)
+    
+    // read file
+    var textfile = readLocalFile('primes_6Digits.txt')
+    var lines = textfile.split('\n')
+    
+    // create set with all 6 digit primes
+    var primeSet = new Set()
+    for (var i in lines) {
+        var tokens = lines[i].split(',')
+        for (var j in tokens) {
+            primeSet.add(parseInt(tokens[j]))
+        }
+    }
+    
+    // iterate thru primes
+    var largestPrimeFactor = 0
+    for (var primeNumber of primeSet) {
+        if (primeNumber > root) {
+            break // we're done
+        }
+        if (targetNum % primeNumber === 0) {
+            largestPrimeFactor = primeNumber
+        }
+    }
     
     
-    // return targetNum
-    
-    return testReadFile()
+    return largestPrimeFactor
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -136,19 +168,6 @@ function readLocalFile(filename) {
     return request.responseText;
 } 
 
-function testReadFile() {
-    
-    
-
-
-    // var text = FileHelper.readStringFromFileAtPath ( "mytext.txt" );    
-    // var text = readFile('primes200.txt');
-    var text = readLocalFile('primes_6Digits.txt');
-    
-
-    
-    return text
-}
 
 
 
@@ -156,6 +175,18 @@ function testReadFile() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+// RESET BUTTON
 
 
 
