@@ -1,0 +1,270 @@
+
+body {
+    background-color: white;
+    /*margin: 0px;*/
+    /* ^in reset^ */
+}
+
+
+
+
+
+
+
+/* HEADER */
+#header {
+    /*background: lightblue;*/
+    /*border-bottom: 2px dashed blue;*/
+    
+    height: 60px;
+    
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
+    color: black;
+}
+
+#header > span {
+    
+    margin-right: 30px;
+    
+    display: flex;
+    align-items: center;
+}
+
+#header span > * {
+    margin-left: 15px; /*space between all elements in header*/
+}
+
+#header .name {
+    opacity: .55;
+}
+
+#header .header-link {
+    opacity: .75;
+    color: black;
+}
+
+#header #apps {
+    /*background-color: lightblue;*/
+    
+    width: 30px;
+    height: 30px;
+    
+    
+    /*background-image: url(https://ssl.gstatic.com/gb/images/i1_1967ca6a.png);*/
+    background-image: url("images/google_icons.png");
+    background-position: -132px -38px;
+}
+
+#apps, #notifications {
+    opacity: .55;
+}
+
+#apps:hover, #notifications:hover {
+    opacity: 1;
+}
+
+#header #notifications img {
+    width: 20px;
+}
+
+#header #account img {
+    width: 35px;
+    
+    border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* CENTER */
+#center, #form-div {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    /*position: absolute;*/
+    /*top: 100px;*/
+}
+
+#logo {
+    
+    margin-top: 140px;
+    
+    /*display: block;*/
+    /*margin: auto;*/
+    
+}
+
+
+#search-box-div {
+    margin-top: 30px;
+    
+    padding: 5px;
+    
+    border: 1px solid #d9d9d9;
+    
+    /*width: 400px;*/
+    
+    display: flex;
+    align-items: center;
+    /*justify-content: space-between;*/
+}
+
+#search-box-div:hover {
+    /*border: 1px solid grey;*/
+    
+    border: 1px solid #b9b9b9;
+    border-top-color: #a0a0a0;
+}
+
+#search-box-div.searchbox-focus {
+    /*background-color: lightblue;*/
+    border: 1px solid #4d90fe;
+}
+
+#search-box-div input:hover {
+    /*border: 1px solid blue;*/
+    /*background-color: lightblue;*/
+}
+
+#search-box-div input {
+    /*margin: 5px;*/
+    width: 550px;
+    border: none;
+    outline: none;
+    
+    font-size: medium;
+}
+
+#search-box-div input:focus {
+    /*border: none;*/
+}
+
+#search-box-div a img{
+    
+    /*height: 30px;*/
+    width: 25px;
+}
+
+
+
+#buttons-div {
+    margin-top: 30px;
+}
+
+#buttons-div input {
+    padding: 10px 16px;
+    margin: 0px 2px;
+    
+    background-color: #f2f2f2;
+    border: 1px solid #f2f2f2;
+    
+    border-radius: 2px;
+    
+    font-weight: bold;
+    color: #757575;
+}
+
+#buttons-div input:hover {
+    border-color: #c6c6c6;
+    color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* FOOTER */
+#footer {
+    /*display: block;*/
+    /*margin: auto;*/
+    /*padding: 10px;*/
+    /*margin: 10px 10px 10px 10px;*/
+    
+    
+    /* necessary make footer */
+    position: absolute;
+    bottom: 0px;
+    min-width: 100vw;
+    box-sizing: border-box;
+    
+    
+    background: #f2f2f2;
+    border-top: 1px solid #e4e4e4;
+    
+    height: 40px;
+    
+    
+    /* to center vertically items inside this div */
+    display: flex;
+    align-items: center;
+    /* and have space between */
+    justify-content: space-between;
+    
+}
+
+#footer-right {
+    
+    margin-right: 27px;
+    
+   
+}
+
+
+#footer span {
+    /*margin: auto 0px;*/
+}
+
+#footer a {
+    margin-left: 27px;
+    color: #666;
+}
+
+
+
+/* ALL LINKS */
+a {
+    text-decoration: none;
+    background-color: inherit;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+span {
+    background-color: inherit;
+    /*background-color: lightblue;*/
+    
+    font-family: arial, sans-serif;
+    font-size: small;
+}
+
+
+
+
