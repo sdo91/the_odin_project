@@ -7,6 +7,9 @@ body {
     
     padding: 0px 45px;
     margin: 0px;
+    
+    background-color: #ddd;
+    font-family: verdana;
 }
 
 h1 {
