@@ -9,7 +9,9 @@ var isRightDown = false
 var isMiddleDown = false
 var debugArea = null
 var maxSizeAcross = 512
-var numSquaresAcross = 64
+var numSquaresAcross = 16
+var amountToDarkenEachPass = 16
+var debugPrintLineNumber = 0
 
 
 // basically the MAIN function
@@ -21,16 +23,16 @@ $(document).ready(function() {
     
     
     // mouse click checker
-    trackMouseButtons()
+    handleMouseButtons()
     
     
-    // create new table
-    createTable()
+    // create new sketchpad
+    createNewSketchpad()
     
     
     
     
-    buttons()
+    initButtons()
 })
 
 function genRandomColor() {
@@ -45,72 +47,107 @@ function genRandomColor() {
     return color
 }
 
-function buttons() {
+function initButtons() {
     $('#toggle-borders').click(function() {
-        $('#sketchpad td').toggleClass('blackborder')
+        $('#sketchpad td').toggleClass('square-border')
+        // $('#sketchpad td').css('border', '1px white solid')
     })
     
     $('#clear').click(function() {
-        $('#sketchpad td').removeClass('green')
+        // $('#sketchpad td').removeClass
+        $('#sketchpad td').css('background-color', 'white')
     })
     
     $('#new-button').click(function() {
-        numSquaresAcross = prompt('number of squares', 16)
-        createTable()
+        numSquaresAcross = prompt('Please enter a new skethpad size (no greater than 100):', numSquaresAcross)
+        debugPrint(numSquaresAcross)
+        if (numSquaresAcross) {
+            createNewSketchpad() 
+        }
+        
     })
     
-    $('#color-button').click(function() {
-        genRandomColor()
-    })
+    // $('#color-button').click(function() {
+    //     genRandomColor()
+    // })
 }
 
-function watchSquares() {
-    $('#sketchpad td').hover(colorSquare)
+
+
+function colorSquare(event) {
+    // debugPrint('color square called')
     
-    function colorSquare() {
-        if (!isMiddleDown) {
-            // $(this).addClass('green')
-            
-            var oldColor = $(this).css('background-color')
-            // debugPrint(typeof(oldColor))
-            if (oldColor == 'rgb(255, 255, 255)') {
-                // debugPrint('white')    
-                $(this).css({'background-color': genRandomColor()})
-            }
-            else {
-                // not white, darken
-                var oldColors = oldColor.match(/[\d]+/g)
-                for (var i in oldColors) {
-                    var newNumber = parseInt(oldColors[i]) - 16
-                    oldColors[i] = Math.max(0, newNumber)
-                }
-                var newColors = 'rgb('+ oldColors[0] +', '+ oldColors[1] +', '+ oldColors[2] +')'
-                
-                debugPrint(newColors)
-                $(this).css({'background-color': newColors})
-            }
-            
+    
+    if (event.type == 'mousedown') {
+        // debugPrint('update buttons')
+        // debugPrint(event)
+        checkForMouseButtonsDown(event)
+    }
+    else{
+        debugPrint(event)
+        debugPrint(event.which)
+    }
+    
+    if (isLeftDown) { 
+        // color or darken square
+        
+        
+        // get current color
+        var oldColor = $(this).css('background-color')
+        // debugPrint(typeof(oldColor))
+        
+        
+        if (oldColor == 'rgb(255, 255, 255)') {
+            // debugPrint('white')    
+            $(this).css({'background-color': genRandomColor()})
         }
+        else {
+            // not white, darken it
+            var oldColors = oldColor.match(/[\d]+/g)
+            for (var i in oldColors) {
+                var newNumber = parseInt(oldColors[i]) - amountToDarkenEachPass
+                oldColors[i] = Math.max(0, newNumber)
+            }
+            var newColors = 'rgb('+ oldColors[0] +', '+ oldColors[1] +', '+ oldColors[2] +')'
+            
+            // debugPrint(newColors)
+            $(this).css({'background-color': newColors})
+        }
+        
+    } 
+    else if (isMiddleDown) {
+        // lighten/erase
+        $(this).css('background-color', 'white')
+    }
+    
+    // debugPrint('done w/ color square')
+}
+
+function checkForMouseButtonsDown(event) {
+    // debugPrint('down: '+event.which)
+    if (event.which == 1) {
+        isLeftDown = true    
+    }
+    if (event.which == 2) {
+        isMiddleDown = true    
+    }
+    if (event.which == 3) {
+        isRightDown = true    
     }
 }
 
-
-
-function trackMouseButtons() {
-    $(document).mousedown(function(event) {
-        debugPrint('down: '+event.which)
-        if (event.which == 1) {
-            isLeftDown = true    
-        }
-        if (event.which == 2) {
-            isMiddleDown = true    
-        }
-        if (event.which == 3) {
-            isRightDown = true    
-        }
+function handleMouseButtons() {
+    
+    $('#sketchpad').mousedown(function() {
+        // prevent drag and drop in the sketchpad
+        // debugPrint('prevent dnd')
+        event.preventDefault()
     })
+    
+    
+    $(document).mousedown(checkForMouseButtonsDown)
     $(document).mouseup(function(event) {
-        debugPrint('up: '+event.which)
+        // debugPrint('up: '+event.which)
         if (event.which == 1) {
             isLeftDown = false    
         }
@@ -121,14 +158,25 @@ function trackMouseButtons() {
             isRightDown = false    
         }
     })
+    // $(document).contextmenu(function() {
+    //     // prevent context menu
+    //     event.preventDefault()
+    //     debugPrint('prevent context menu')
+    // })
+    
+    
 }
 
 function debugPrint(obj) {
     // var debugArea = $('#debug-area')
-    debugArea.text(obj)
+    debugArea.text(debugPrintLineNumber.toString() + ': ' + obj)
+    console.log(obj)
+    debugPrintLineNumber++
 }
 
-function createTable() {
+
+function createNewSketchpad() {
+    
     
     // remove old table
     $('table').remove()
@@ -149,13 +197,19 @@ function createTable() {
         }
     }
     
-    // default border
+    // get squares
     var squares = $('#sketchpad td')
-    // squares.toggleClass('blackborder')
+    
+    // set size of squares
     var pixelsPerSquare = Math.floor(maxSizeAcross/numSquaresAcross)
     squares.css({'width': pixelsPerSquare, 'height': pixelsPerSquare})
     
-    watchSquares()
+    // turn on borders?
+    squares.addClass('square-border')
+    
+    // watch for mouse
+    squares.mouseover(colorSquare)
+    squares.mousedown(colorSquare)
 }
 
 
