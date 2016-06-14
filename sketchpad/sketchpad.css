@@ -53,8 +53,13 @@ table {
     justify-content: center;
 }
 
-#buttons-div button {
+#buttons-div > * {
     margin: 10px;
+}
+
+form {
+    border: 1px solid grey;
+    padding-right: 5px;
 }
 
 #debug-area {

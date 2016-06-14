@@ -17,12 +17,33 @@
         <p>by sdo91</p>
 
         <div id='buttons-div'>
-            <button id='clear'>Clear</button>
-            <button id='toggle-borders'>Toggle Borders</button>
+            <button id='clear-button'>Clear</button>
+            <button id='borders-button'>Toggle Borders</button>
             <button id='new-button'>New</button>
             <!--<button id='color-button'>Gen Color</button>-->
             
+            
+            <div>
+                <label>Color:</label>
+                <select id='color-select'>
+                    <!--<option selected disabled>Color</option>-->
+                    <optgroup label='Color' />
+                    <option value='random'>Random</option>
+                    <option value='black'>Black</option>
+                    <option value='red'>Red</option>
+                    <option value='green'>Green</option>
+                    <option value='blue'>Blue</option>
+                </select>
+            </div>
+            
+            <form>
+                <input type="checkbox" name="darken-checkbox" value="darken" checked>Darken
+                <input type="checkbox" >Overwrite Color?
+            </form>
+            
         </div>
+        
+        
         
         <div id='sketchpad'>
             

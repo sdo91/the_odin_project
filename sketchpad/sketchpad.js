@@ -48,31 +48,46 @@ function genRandomColor() {
 }
 
 function initButtons() {
-    $('#toggle-borders').click(function() {
+    $('#borders-button').click(function() {
         $('#sketchpad td').toggleClass('square-border')
         // $('#sketchpad td').css('border', '1px white solid')
     })
     
-    $('#clear').click(function() {
+    $('#clear-button').click(function() {
         // $('#sketchpad td').removeClass
-        $('#sketchpad td').css('background-color', 'white')
+        setSquareColor($('#sketchpad td'), 'white')
     })
     
     $('#new-button').click(function() {
-        numSquaresAcross = prompt('Please enter a new skethpad size (no greater than 100):', numSquaresAcross)
-        debugPrint(numSquaresAcross)
+        numSquaresAcross = prompt('Please enter a new sketchpad size (no greater than 100):', numSquaresAcross)
+        debugPrint('new size: ' + numSquaresAcross)
         if (numSquaresAcross) {
+            numSquaresAcross = parseInt(numSquaresAcross)
+            if (numSquaresAcross > 100) {
+                numSquaresAcross = 100
+            }
+            else if (numSquaresAcross < 1) {
+                numSquaresAcross = 1
+            }
             createNewSketchpad() 
         }
         
     })
     
-    // $('#color-button').click(function() {
-    //     genRandomColor()
-    // })
+    
+    
 }
 
-
+function getSelectedColor() {
+    var selectedColor = $('#color-select').val()
+    debugPrint(selectedColor)
+    if (selectedColor == 'random') {
+        return genRandomColor()
+    }
+    else {
+        return selectedColor
+    }
+}
 
 function colorSquare(event) {
     // debugPrint('color square called')
@@ -91,7 +106,7 @@ function colorSquare(event) {
         if (oldColor == 'rgb(255, 255, 255)') {
             // debugPrint('was white')
             
-            setSquareColor($(this), genRandomColor())
+            setSquareColor($(this), getSelectedColor())
         }
         else {
             // not white, darken it
@@ -116,8 +131,8 @@ function colorSquare(event) {
     // debugPrint('done w/ color square')
 }
 
-function setSquareColor(jQueryElement, color) {
-    jQueryElement.css('background-color', color)
+function setSquareColor(jQueryObj, color) {
+    jQueryObj.css('background-color', color)
     debugPrint(color)
 }
 
