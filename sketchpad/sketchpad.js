@@ -4,9 +4,9 @@
 
 
 // globals
-var isLeftDown = false
-var isRightDown = false
-var isMiddleDown = false
+// var isLeftDown = false
+// var isRightDown = false
+// var isMiddleDown = false
 var debugArea = null
 var maxSizeAcross = 512
 var numSquaresAcross = 16
@@ -78,17 +78,8 @@ function colorSquare(event) {
     // debugPrint('color square called')
     
     
-    if (event.type == 'mousedown') {
-        // debugPrint('update buttons')
-        // debugPrint(event)
-        checkForMouseButtonsDown(event)
-    }
-    else{
-        debugPrint(event)
-        debugPrint(event.which)
-    }
-    
-    if (isLeftDown) { 
+    if (event.which == 1) { 
+        // left button down
         // color or darken square
         
         
@@ -98,8 +89,9 @@ function colorSquare(event) {
         
         
         if (oldColor == 'rgb(255, 255, 255)') {
-            // debugPrint('white')    
-            $(this).css({'background-color': genRandomColor()})
+            // debugPrint('was white')
+            
+            setSquareColor($(this), genRandomColor())
         }
         else {
             // not white, darken it
@@ -110,56 +102,39 @@ function colorSquare(event) {
             }
             var newColors = 'rgb('+ oldColors[0] +', '+ oldColors[1] +', '+ oldColors[2] +')'
             
-            // debugPrint(newColors)
-            $(this).css({'background-color': newColors})
+            setSquareColor($(this), newColors)
         }
         
     } 
-    else if (isMiddleDown) {
+    else if (event.which == 2) {
+        // middle button down
         // lighten/erase
-        $(this).css('background-color', 'white')
+        
+        setSquareColor($(this), 'white')
     }
     
     // debugPrint('done w/ color square')
 }
 
-function checkForMouseButtonsDown(event) {
-    // debugPrint('down: '+event.which)
-    if (event.which == 1) {
-        isLeftDown = true    
-    }
-    if (event.which == 2) {
-        isMiddleDown = true    
-    }
-    if (event.which == 3) {
-        isRightDown = true    
-    }
+function setSquareColor(jQueryElement, color) {
+    jQueryElement.css('background-color', color)
+    debugPrint(color)
 }
+
 
 function handleMouseButtons() {
     
+    // prevent drag and drop in the sketchpad
     $('#sketchpad').mousedown(function() {
-        // prevent drag and drop in the sketchpad
         // debugPrint('prevent dnd')
         event.preventDefault()
     })
     
     
-    $(document).mousedown(checkForMouseButtonsDown)
-    $(document).mouseup(function(event) {
-        // debugPrint('up: '+event.which)
-        if (event.which == 1) {
-            isLeftDown = false    
-        }
-        if (event.which == 2) {
-            isMiddleDown = false    
-        }
-        if (event.which == 3) {
-            isRightDown = false    
-        }
-    })
+    
+    
+    // prevent context menu
     // $(document).contextmenu(function() {
-    //     // prevent context menu
     //     event.preventDefault()
     //     debugPrint('prevent context menu')
     // })
@@ -207,7 +182,7 @@ function createNewSketchpad() {
     // turn on borders?
     squares.addClass('square-border')
     
-    // watch for mouse
+    // watch for mouse click/movement
     squares.mouseover(colorSquare)
     squares.mousedown(colorSquare)
 }
