@@ -1,0 +1,63 @@
+
+h1, p {
+    text-align: center;
+}
+
+body {
+    /*text-align: center;*/
+    background-color: lightgrey;
+}
+
+#sketchpad {
+    /*width: 400;*/
+    /*height: 400px;*/
+    
+    border: 1px solid blue;
+    
+    
+    /*display: inline-block;*/
+    
+    display: table;
+    margin: 0px auto;
+}
+
+#sketchpad td {
+    /* small squares in sketchpad */
+    
+    width: 10px;
+    height: 10px;
+    padding: 0px;
+    
+    
+    background-color: white;
+    margin: 0px;
+}
+
+.blackborder {
+    border: 1px solid black;
+}
+
+#sketchpad td.green {
+    background-color: green;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+#buttons-div {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#buttons-div button {
+    margin: 10px;
+}
+
+#debug-area {
+    border: 1px dotted red;
+    
+    /*display: inline-block;*/
+}
