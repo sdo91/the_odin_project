@@ -9,8 +9,8 @@ body {
 }
 
 #sketchpad {
-    /*width: 400;*/
-    /*height: 400px;*/
+    min-width: 100px;
+    min-height: 100px;
     
     
     border: 20px ridge brown;
@@ -58,12 +58,14 @@ table {
 }
 
 form {
-    border: 1px solid grey;
+    /*border: 1px solid grey;*/
     padding-right: 5px;
 }
 
 #debug-area {
     border: 1px dashed red;
     
+    width: 512px;
+    margin: 20px auto;
     /*display: inline-block;*/
 }

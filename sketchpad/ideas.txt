@@ -1,0 +1,16 @@
+
+
+add id to each square
+add these to a list when dragging/erasing
+then have an undo drag option
+
+
+darken toggle
+
+
+
+overwrite toggle
+
+
+
+

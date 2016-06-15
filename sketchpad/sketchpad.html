@@ -15,11 +15,13 @@
         
         <h1>Javascript/jQuery sketchpad</h1>
         <p>by sdo91</p>
+        <p>Left mouse button to draw, center button to erase.</p>
 
         <div id='buttons-div'>
+            <button id='new-button'>New Sketchpad</button>
             <button id='clear-button'>Clear</button>
             <button id='borders-button'>Toggle Borders</button>
-            <button id='new-button'>New</button>
+            
             <!--<button id='color-button'>Gen Color</button>-->
             
             
@@ -37,8 +39,8 @@
             </div>
             
             <form>
-                <input type="checkbox" name="darken-checkbox" value="darken" checked>Darken
-                <input type="checkbox" >Overwrite Color?
+                <input type="checkbox" id='darken-checkbox' checked> Darken
+                <input type="checkbox" id='overwrite-checkbox'> Overwrite
             </form>
             
         </div>
@@ -65,7 +67,7 @@
         
         
         
-        <p id='debug-area'>debug area</p>
+        <!--<p id='debug-area'>debug area</p>-->
         
         <!-- JAVASCRIPT -->
         <script src='//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>

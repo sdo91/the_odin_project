@@ -59,16 +59,21 @@ function initButtons() {
     })
     
     $('#new-button').click(function() {
-        numSquaresAcross = prompt('Please enter a new sketchpad size (no greater than 100):', numSquaresAcross)
-        debugPrint('new size: ' + numSquaresAcross)
-        if (numSquaresAcross) {
-            numSquaresAcross = parseInt(numSquaresAcross)
-            if (numSquaresAcross > 100) {
-                numSquaresAcross = 100
+        var userInput = prompt('Please enter a new sketchpad size (no greater than 100):', numSquaresAcross)
+        userInput = parseInt(userInput)
+        
+        if (userInput) {
+            
+            if (userInput > 100) {
+                userInput = 100
             }
-            else if (numSquaresAcross < 1) {
-                numSquaresAcross = 1
+            else if (userInput < 1) {
+                userInput = 1
             }
+            
+            debugPrint('parsed input: ' + userInput)
+            
+            numSquaresAcross = userInput
             createNewSketchpad() 
         }
         
@@ -80,7 +85,7 @@ function initButtons() {
 
 function getSelectedColor() {
     var selectedColor = $('#color-select').val()
-    debugPrint(selectedColor)
+    // debugPrint(selectedColor)
     if (selectedColor == 'random') {
         return genRandomColor()
     }
@@ -102,14 +107,19 @@ function colorSquare(event) {
         var oldColor = $(this).css('background-color')
         // debugPrint(typeof(oldColor))
         
-        
-        if (oldColor == 'rgb(255, 255, 255)') {
+        var isOverwriteChecked = $('#overwrite-checkbox').prop('checked')
+        if (oldColor == 'rgb(255, 255, 255)' || isOverwriteChecked) {
             // debugPrint('was white')
             
             setSquareColor($(this), getSelectedColor())
         }
         else {
-            // not white, darken it
+            // not white, darken it (or not)
+            var isDarkenChecked = $('#darken-checkbox').prop('checked')
+            if (!isDarkenChecked) {
+                return
+            }
+            
             var oldColors = oldColor.match(/[\d]+/g)
             for (var i in oldColors) {
                 var newNumber = parseInt(oldColors[i]) - amountToDarkenEachPass
@@ -157,12 +167,7 @@ function handleMouseButtons() {
     
 }
 
-function debugPrint(obj) {
-    // var debugArea = $('#debug-area')
-    debugArea.text(debugPrintLineNumber.toString() + ': ' + obj)
-    console.log(obj)
-    debugPrintLineNumber++
-}
+
 
 
 function createNewSketchpad() {
@@ -203,7 +208,12 @@ function createNewSketchpad() {
 }
 
 
-
+function debugPrint(obj) {
+    // var debugArea = $('#debug-area')
+    debugArea.text(debugPrintLineNumber.toString() + ': ' + obj)
+    console.log(obj)
+    debugPrintLineNumber++
+}
 
 
 
