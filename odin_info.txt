@@ -1,0 +1,24 @@
+
+
+how to post solution:
+find page on github
+click edit
+add solution
+propose file change
+send pull request
+
+
+
+https://cdn.rawgit.com/sdo91/the_odin_project/master/euler_js/euler.html
+
+
+* [Tom Bell's solution](https://github.com/bellt/odin_project-project_euler) | [View in browser](https://htmlpreview.github.io/?https://github.com/bellt/odin_project-project_euler/blob/master/index.html)
+* [sdo91's solution] (https://github.com/sdo91/the_odin_project/tree/master/euler_js) | [View in browser] (https://cdn.rawgit.com/sdo91/the_odin_project/master/euler_js/euler.html)
+* Add your solution above this line!
+
+
+* [sdo91's solution] () | [View in browser] ()
+
+* [sdo91's solution] (https://github.com/sdo91/the_odin_project/tree/master/google_homepage) | [View in browser] (https://cdn.rawgit.com/sdo91/the_odin_project/master/google_homepage/google.html)
+
+
