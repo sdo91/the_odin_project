@@ -4,4 +4,4 @@
 Preview on github:
 * [Google Homepage] (https://cdn.rawgit.com/sdo91/the_odin_project/master/google_homepage/google.html)
 * [Project Euler] (https://cdn.rawgit.com/sdo91/the_odin_project/master/euler_js/euler.html)
-* [Sketchpad] (https://cdn.rawgit.com/sdo91/the_odin_project/master/sketchpad/sketchpad.html)
+* [Sketchpad] (https://htmlpreview.github.io/?https://github.com/sdo91/the_odin_project/master/sketchpad/sketchpad.html)
